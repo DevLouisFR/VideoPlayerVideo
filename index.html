@@ -1,0 +1,313 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Player</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,300i,400,400i,700&display=swap" rel="stylesheet">
+    <link rel="icon" href="images/logo.png" />
+</head>
+
+<body>
+    <!-- ROOM -->
+    <main class="room">
+        <!-- Invisible room for scaling origin room size-->
+        <div class="room_scale js-room-scale"></div>
+        <!-- DECO ON THE DESK/WALL -->
+        <section class="deco">
+            <!-- Part 1 : WINDOW + PLANT + CURTAIN -->
+            <div class="deco_part1">
+                <!-- Curtain container-->
+                <img class="deco_part1_curtain js-no-scale" src="images/curtain.svg" alt="curtain">
+                <!-- WINDOW + CURTAIN -->
+                <div class="deco_part1_window js-window-deco js-day js-no-scale">
+                    <img class="deco_part1_window_curtain_1 js-no-scale" src="images/left-curtain.svg" alt="curtain">
+                    <img class="deco_part1_window_curtain_2 js-no-scale" src="images/right-curtain.svg" alt="curtain">
+                </div>
+                <!-- PLANT on the left -->
+                <div class="deco_part1_plant">
+                    <img class="js-no-scale" src="images/plant.svg" alt="plant">
+                </div>
+            </div>
+            <!-- Part 2 COMPUTER + CLOCK -->
+            <div class="deco_part2">
+                <!-- CLOCK -->
+                <div class="deco_part2_top">
+                    <!-- clock function needles -->
+                    <div class="deco_part2_top_clock js-clock">
+                        <div class="deco_part2_top_clock_middle"></div>
+                        <!-- hours needle -->
+                        <div class="deco_part2_top_clock_hours js-hours">
+                            <div class="deco_part2_top_clock_hours_needle"></div>
+                        </div>
+                        <!-- minutes needle -->
+                        <div class="deco_part2_top_clock_minutes js-minutes">
+                            <div class="deco_part2_top_clock_minutes_needle"></div>
+                        </div>
+                        <!-- seconds needle -->
+                        <div class="deco_part2_top_clock_seconds js-seconds">
+                            <div class="deco_part2_top_clock_seconds_needle"></div>
+                        </div>
+                    </div>
+                </div>
+                <!-- COMPUTER -->
+                <div class="deco_part2_bot js-bg-computer">
+                    <div class="deco_part2_bot_computer">
+                        <div class="deco_part2_bot_computer_screen">
+                            <!--Inside the screen-->
+                            <!-- LOCKED SCREEN -->
+                            <div class="deco_part2_bot_computer_screen_inside js-computer-locked">
+                                <div class="deco_part2_bot_computer_screen_inside_digital-clock">
+                                    <h3 class="js-digital-clock hidden"></h3>
+                                </div>
+                            </div>
+                            <!-- UNLOCKED SCREEN -> video player -->
+                            <div class="deco_part2_bot_computer_screen_unlocked  js-computer-unlocked">
+                                <!-- main bar user -->
+                                <div class="deco_part2_bot_computer_screen_unlocked_main-bar js-main-bar ">
+                                    <!-- off screen -->
+                                    <img src="images/off.svg"
+                                        class="deco_part2_bot_computer_screen_unlocked_main-bar_off js-off-screen">
+                                    <a href="https://twitter.com/cathydolle" target="_blank">Twitter</a>
+                                    <a href="https://dribbble.com/CathyDolle" target="_blank">Dribbble</a>
+                                    <a href="https://github.com/CathyDolle" target="_blank">Github</a>
+                                    <a href="https://www.twitch.tv/katy_v4" target="_blank">Twitch</a>
+                                </div>
+                                <!-- Window on the unlocked screen -->
+                                <div class="deco_part2_bot_computer_screen_unlocked_window js-window ">
+                                    <!--  NAV -->
+                                    <div class="deco_part2_bot_computer_screen_unlocked_window_nav js-nav ">
+                                        <div class="deco_part2_bot_computer_screen_unlocked_window_nav_close ">
+                                        </div>
+                                        <div class="deco_part2_bot_computer_screen_unlocked_window_nav_mini ">
+                                        </div>
+                                        <div class="deco_part2_bot_computer_screen_unlocked_window_nav_resize ">
+                                        </div>
+                                    </div>
+                                    <!-- VIDEO PLAYER -->
+                                    <div class="deco_part2_bot_computer_screen_unlocked_window_site js-window-site ">
+                                        <div
+                                            class="deco_part2_bot_computer_screen_unlocked_window_site_main js-video-container  js-player">
+                                            <!-- Video container  -->
+                                            <div
+                                                class="deco_part2_bot_computer_screen_unlocked_window_site_main_video js-video">
+                                                <!-- Video main (created with js) -->
+                                                <video class="js-main-video"></video>
+                                                <div class="js-video-commands">
+                                                    <!-- seek bar video -->
+                                                    <div
+                                                        class="deco_part2_bot_computer_screen_unlocked_window_site_main_video_seek-bar js-seek-bar ">
+                                                        <!-- seek bar video fill -->
+                                                        <div
+                                                            class="deco_part2_bot_computer_screen_unlocked_window_site_main_video_seek-bar_fill js-seek-bar-fill ">
+                                                        </div>
+                                                    </div>
+                                                    <!-- VIDEO COMMANDS -->
+                                                    <div
+                                                        class="deco_part2_bot_computer_screen_unlocked_window_site_main_video_commands js-bg-commands ">
+                                                        <!-- PREV  -->
+                                                        <img src="images/prev.svg"
+                                                            class="js-prev deco_part2_bot_computer_screen_unlocked_window_site_main_video_commands_next js-next-video "
+                                                            alt="prev">
+                                                        <!-- PLAY -->
+                                                        <img src="images/play.svg"
+                                                            class="js-play  deco_part2_bot_computer_screen_unlocked_window_site_main_video_commands_play"
+                                                            alt="play">
+                                                        <!-- PAUSE -->
+                                                        <img src="images/pause.svg"
+                                                            class="js-pause hidden  deco_part2_bot_computer_screen_unlocked_window_site_main_video_commands_pause"
+                                                            alt="pause">
+                                                        <!-- NEXT -->
+                                                        <img src="images/next.svg"
+                                                            class="js-next deco_part2_bot_computer_screen_unlocked_window_site_main_video_commands_next js-next-video "
+                                                            alt="next">
+                                                        <!-- VOLUME HIGH -->
+                                                        <img src="images/high-volume.svg"
+                                                            class="js-next deco_part2_bot_computer_screen_unlocked_window_site_main_video_commands_high-volume js-high-volume "
+                                                            alt="high-volume">
+                                                        <!-- MUTED VOLUME -->
+                                                        <img src="images/muted-volume.svg"
+                                                            class="js-next deco_part2_bot_computer_screen_unlocked_window_site_main_video_commands_muted-volume hidden js-muted-volume "
+                                                            alt="muted-volume">
+                                                        <!-- VOLUME BAR -->
+                                                        <div
+                                                            class="deco_part2_bot_computer_screen_unlocked_window_site_main_video_commands_volume js-volume-bar">
+                                                            <div
+                                                                class="deco_part2_bot_computer_screen_unlocked_window_site_main_video_commands_volume_fill js-volume-bar-fill">
+                                                            </div>
+                                                        </div>
+                                                        <!-- VIDEO TIMER -->
+                                                        <!-- Current time video -->
+                                                        <h3 class="js-video-current-time">/</h3>
+                                                        <!-- separator -->
+                                                        <h3>&nbsp/&nbsp</h3>
+                                                        <!-- Duration video -->
+                                                        <h3 class="js-video-duration"></h3>
+                                                        <!-- FULLSCREEN -->
+                                                        <img src="images/fullscreen.svg"
+                                                            class="js-fullscreen 
+                                                        deco_part2_bot_computer_screen_unlocked_window_site_main_video_commands_fullscreen "
+                                                            alt="fullscreen">
+                                                        <!-- MINIMIZE -->
+                                                        <img src="images/minimize.svg"
+                                                            class="js-minimize 
+                                                           deco_part2_bot_computer_screen_unlocked_window_site_main_video_commands_minimize hidden "
+                                                            alt="minimize">
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                            <div class="js-infos-video">
+                                                <!-- VIDEO TEXT INFOS (created with js) -->
+                                                <div
+                                                    class="deco_part2_bot_computer_screen_unlocked_window_site_main_text">
+                                                    <!-- title -->
+                                                    <h1 class="js-video-title"></h1>
+                                                    <!-- description -->
+                                                    <p class="js-video-description"></p>
+                                                    <!-- link on youtube -->
+                                                    <a class="js-video-link" href="" target="blank_">lien direct vers
+                                                        youtube</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- VIDEO PLAYER PLAYLSIT -->
+                                        <div
+                                            class="deco_part2_bot_computer_screen_unlocked_window_site_list js-video-playlist ">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- COMPUTER STYLE FOOT -->
+                        <div class="deco_part2_bot_computer_bot">
+
+                        </div>
+                        <div class="deco_part2_bot_computer_foot1">
+                        </div>
+                        <div class="deco_part2_bot_computer_foot2">
+                        </div>
+                        <div class="deco_part2_bot_computer_foot3">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- POST IT + IPHONE -->
+            <div class="deco_part3">
+                <!-- POST IT -->
+                <div class="deco_part3_post">
+                    <img class="js-no-scale js-post-logo" src="images/post-logo.svg" alt="post-logo">
+                    <a class="deco_part3_post_tea" href="https://www.google.fr/" target="_blank">
+                        <img class="js-no-scale" src="images/post-tea.svg" alt="post-tea">
+                    </a>
+                    <img class="deco_part3_post_key js-no-scale js-post-key" src="images/post-key.svg" alt="post-key">
+                </div>
+                <div class="deco_part3_bot">
+                    <!-- COFFEE -->
+                    <div class="deco_part3_bot_coffee">
+                        <img class="deco_part3_bot_coffee_smoke" src="images/smoke.svg" alt="smoke">
+                        <img class="deco_part3_bot_coffee_cup" src="images/coffee.svg" alt="coffee">
+                    </div>
+                    <!-- IPHONE -->
+                    <div class="deco_part3_bot_iphone">
+                        <div class="deco_part3_bot_iphone_screen">
+                            <!-- Iphone screen locked -->
+                            <div class="deco_part3_bot_iphone_screen_inside js-iphone-locked">
+                            </div>
+
+                            <!-- IPHONE UNLOCKED -->
+                            <div class="deco_part3_bot_iphone_screen_inside_unlocked hidden js-iphone-unlocked">
+                                <!-- ARTIST -->
+                                <h1 class="js-iphone-unlocked js-audio-artist">ARISTE</h1>
+                                <h2 class="js-iphone-unlocked js-audio-title">Music title</h2>
+                                <!-- COVER IMAGE -->
+                                <div
+                                    class="deco_part3_bot_iphone_screen_inside_unlocked_cover js-audio-cover js-iphone-unlocked">
+
+                                </div>
+                                <!-- SET TIME -->
+                                <div class="deco_part3_bot_iphone_screen_inside_unlocked_time js-iphone-unlocked">
+                                    <h3 class="js-audio-current-time"></h3>
+                                    <div
+                                        class="deco_part3_bot_iphone_screen_inside_unlocked_time_bar js-audio-time-bar js-iphone-unlocked">
+                                        <div
+                                            class="deco_part3_bot_iphone_screen_inside_unlocked_time_bar_fill js-audio-time-bar-fill js-iphone-unlocked">
+                                        </div>
+                                    </div>
+                                    <h3 class="js-audio-duration"></h3>
+                                </div>
+                                <!-- CONTROLS -->
+                                <div class="deco_part3_bot_iphone_screen_inside_unlocked_controls js-iphone-unlocked">
+                                    <img class="js-prev-audio js-iphone-unlocked " src="images/prev.svg" alt="prev">
+                                    <img class="js-play-audio js-iphone-unlocked " src="images/play.svg" alt="play">
+                                    <img class="js-pause-audio  js-iphone-unlocked hidden" src="images/pause.svg"
+                                        alt="pause">
+                                    <img class="js-next-audio js-iphone-unlocked " src="images/next.svg" alt="next">
+                                </div>
+                                <!-- SOUND -->
+                                <div class="deco_part3_bot_iphone_screen_inside_unlocked_volume js-iphone-unlocked">
+                                    <img src="images/low-volume.svg" alt="volume">
+                                    <!-- Volume -->
+                                    <div
+                                        class="deco_part3_bot_iphone_screen_inside_unlocked_volume_bar js-volume-audio-bar js-iphone-unlocked">
+                                        <!-- Fill volume -->
+                                        <div
+                                            class="deco_part3_bot_iphone_screen_inside_unlocked_volume_bar_fill js-volume-audio-bar-fill js-iphone-unlocked">
+                                        </div>
+                                    </div>
+                                    <img src="images/high-volume.svg" alt="volume">
+                                </div>
+                            </div>
+                            <!-- iPHONE CAMERA -->
+                            <div class="deco_part3_bot_iphone_screen_camera js-iphone-unlocked"></div>
+                        </div>
+                        <!-- IPHONE SUPPORT -->
+                        <div class="deco_part3_bot_iphone_support"></div>
+                    </div>
+
+        </section>
+        <!-- DESK SUPPORT -->
+        <section class="desk">
+            <div class="desk_table"></div>
+            <div class="desk_under-table">
+                <div class="desk_under-table_shadow"></div>
+            </div>
+            <div class="desk_bot">
+                <div class="desk_bot_drawer js-drawer js-no-scale">
+                    <div class="desk_bot_drawer_shadow js-no-scale"></div>
+                    <div class="desk_bot_drawer_handle js-no-scale"></div>
+                </div>
+                <div class="desk_bot_foot">
+                    <div class="desk_bot_foot_shadow"></div>
+                </div>
+            </div>
+        </section>
+        <!-- POST IT OPENS -->
+        <!-- (class no-scale is for not scaling computer) -->
+        <section class="room_post js-no-scale hidden js-room-post">
+            <!-- post contain -->
+            <div class="room_post_contain js-post-contain js-no-scale">
+                <!-- post contain logo -->
+                <div class="room_post_contain_logo js-post-contain-logo hidden js-no-scale">
+                    <!--<img class="js-no-scale" src="images/post-contain-logo.svg" alt="logo"> -->
+                    <img class="js-no-scale room_post_contain_logo_grid" src="images/post-contain-logo-grid.svg"
+                        alt="logo-grid">
+                </div>
+                <!-- post contain shortcut key -->
+                <div class="room_post_contain_key js-post-contain-key hidden js-no-scale">
+                    <img class="js-no-scale" src="images/post-contain-key.svg" alt="key">
+                </div>
+                <!-- Drawer -->
+                    <img class="room_post_contain_drawer hidden js-drawer-open js-no-scale" src="images/post-contain-drawer.svg" alt="key">
+                <img class="js-no-scale room_post_contain_close js-close-post" src="images/close.svg" alt="close">
+            </div>
+        </section>
+    </main>
+    <!-- <script src="script/gsap.min.js"></script> -->
+    <script src="script/playlist.js"></script>
+    <script src="script/main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1177 @@
+/*
+COLORS
+*/
+// background colors
+$bg : #D2D2E0;
+
+// light mode website
+$description : black;
+$link : rgb(255, 139, 230);
+$main-bar : rgb(22, 22, 22);
+$screen-window : white;
+$nav : #e5e5e5;
+
+// Desk colors
+$desk : white;
+$desk-shadow : #F5F5F5;
+$handle : black;
+
+// dark mode
+// $desk : rgb(33, 33, 47);
+// $desk-shadow : rgb(37, 37, 51);
+// $handle : rgb(0, 0, 0);
+
+// Deco colors
+$curtain : rgba(255, 255, 255, 0.623);
+
+// Commands colors
+$timebar : rgb(177, 176, 251);
+
+
+// BODY
+body {
+    background: $bg;
+    margin: 0;
+    overflow: hidden;
+}
+
+// ROOM 
+.room {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    transition: 1s ease-in-out;
+
+    // Invisible part for scale room
+    &_scale {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        // background: red;
+        z-index: 2;
+    }
+
+    // Post-it 
+    &_post {
+        position: absolute;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 4;
+
+        &_contain {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 600px;
+            // background: pink;
+
+            // post-it logo
+            &_logo {
+                animation-name: opacity-fade;
+                animation-duration: 1s;
+                animation-iteration-count: 1;
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 70%;
+                height: 70%;
+                will-change: opacity;
+
+                & img {
+                    width: 100%;
+                    height: 100%;
+                }
+
+                &_grid {
+                    animation-name: opacity-fade;
+                    animation-duration: 5s;
+                    animation-iteration-count: 1;
+                    position: absolute;
+                    will-change: opacity;
+                }
+            }
+
+            &_key {
+                animation-name: opacity-fade;
+                animation-duration: 1s;
+                animation-iteration-count: 1;
+                will-change: opacity;
+
+                & img {
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+
+            &_drawer {
+                width: 100%;
+            }
+
+            &_close {
+                position: absolute;
+                top: 0px;
+                right: 0px;
+                width: 30px;
+                height: 30px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+
+//Animations
+.scale {
+    animation-name: scale;
+    animation-iteration-count: 1;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+// Hidden
+
+.hidden {
+    display: none !important;
+}
+
+// DECORATIONS ON DESK + WALL
+
+.deco {
+    // background: blue;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 90%;
+    height: 80%;
+
+    // WINDOW + PLANT
+    &_part1 {
+        position: relative;
+        // background: pink;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        width: 30%;
+        height: 100%;
+
+        &_curtain {
+            height: 37px;
+            user-select: none;
+            pointer-events: none;
+        }
+
+        &_window {
+            position: relative;
+            width: 350px;
+            height: 440px;
+            background-image: url('../images/paris.svg');
+            background-size: cover;
+            // border: inset 6px rgb(22, 22, 22);
+            box-shadow: inset 0px 0px 0px 6px #212121;
+            // border-style: inset;
+            cursor: pointer;
+            z-index: 3;
+
+            &_curtain_1,
+            &_curtain_2 {
+                position: absolute;
+                animation-name: flyingCurtain;
+                animation-duration: 3s;
+                animation-iteration-count: infinite;
+                animation-timing-function: ease-out;
+                top: -1px;
+                height: 105%;
+                user-select: none;
+                pointer-events: none;
+                // width: 65px;
+                // background: $curtain;
+            }
+
+            &_curtain_1 {
+                left: -10px;
+            }
+
+            &_curtain_2 {
+                right: -10px;
+            }
+        }
+
+        &_plant {
+            position: absolute;
+            bottom: 0;
+            left: 110px;
+            z-index: 3;
+            user-select: none;
+            pointer-events: none;
+
+            & img {
+                width: 180px;
+            }
+        }
+    }
+
+    &_part2 {
+        // background: blue;
+        width: 40%;
+        // width: 100%;
+        height: 100%;
+
+        &_top {
+            width: 100%;
+            height: 40%;
+            // background: green;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            //CLOCK
+            &_clock {
+                position: relative;
+                width: 140px;
+                height: 140px;
+                border-radius: 90%;
+                background: white;
+                border: solid 6px black;
+
+                &_hours,
+                &_minutes,
+                &_seconds {
+                    position: absolute;
+                    background: black;
+                    top: 50%;
+                    left: 50%;
+                    transition: transform 0.5s cubic-bezier(0.75, 1, 0.45, 2.35);
+                    will-change: transform;
+                }
+
+                &_middle {
+                    position: absolute;
+                    top: calc(50% - 3px);
+                    left: calc(50% - 3px);
+                    width: 6px;
+                    height: 6px;
+                    background: black;
+                    z-index: 1;
+                    border-radius: 50%;
+                }
+
+                &_hours {
+                    &_needle {
+                        position: absolute;
+                        width: 3px;
+                        height: 35px;
+                        background: rgb(0, 0, 0);
+                        bottom: -2px;
+                        left: -2px;
+                    }
+                }
+
+                &_minutes {
+                    &_needle {
+                        position: absolute;
+                        width: 2px;
+                        height: 50px;
+                        background: rgb(153, 150, 155);
+                        bottom: -1px;
+                        left: -1px;
+                    }
+                }
+
+                &_seconds {
+                    &_needle {
+                        position: absolute;
+                        width: 1px;
+                        height: 60px;
+                        background: rgb(255, 163, 250);
+                        bottom: -1px;
+                        left: -1px;
+                    }
+                }
+            }
+        }
+
+        &_bot {
+            --width_computer: 450px;
+            --height_computer: 350px;
+            // --width_computer: 850px;
+            // --height_computer: 650px;
+            width: 100%;
+            height: 60%;
+            // background: pink;
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+
+            &_computer {
+                width: var(--width_computer);
+                height: var(--height_computer);
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                // background: white;
+
+                &_screen {
+                    position: relative;
+                    background: black;
+                    width: 100%;
+                    height: 78%;
+                    border-radius: 10px 10px 0px 0px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 3;
+
+                    //VIDEO PLAYER 
+                    &_inside {
+                        position: absolute;
+                        width: 97%;
+                        height: 95%;
+                        background: rgb(26, 26, 26);
+                        z-index: 3;
+
+                        &_digital-clock {
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            position: absolute;
+                            width: 140px;
+                            // background: red;
+                            height: 45px;
+                            bottom: 14px;
+                            right: 14px;
+
+                            & h3 {
+                                font-family: 'Lato', sans-serif;
+                                color: white;
+                                font-size: 30px;
+                                letter-spacing: 6px;
+                            }
+                        }
+
+                        // PLAYER VIDEO UNLOCKED SCREEN
+                    }
+
+                    &_inside:hover {
+                        animation-name: wallpaper-transition;
+                        animation-duration: 1s;
+                        will-change: opacity;
+                        background-image: url('../images/computer-wallpaper.svg');
+                        background-size: cover;
+                        cursor: pointer;
+                    }
+
+                    &_unlocked {
+                        position: relative;
+                        width: 97%;
+                        height: 95%;
+                        background: rgb(26, 26, 26);
+                        opacity: 0;
+
+                        &_main-bar {
+                            display: flex;
+                            align-items: center;
+                            position: relative;
+                            width: 100%;
+                            height: 4%;
+                            background: $main-bar;
+                            z-index: 1;
+
+                            &_off {
+                                position: absolute;
+                                width: 5px;
+                                top: 2;
+                                right: 3;
+                                z-index: 1;
+                                cursor: pointer;
+
+                            }
+
+                            & a {
+                                font-family: 'lato';
+                                font-size: 5px;
+                                font-weight: 600;
+                                margin: 0 0 0 3px;
+                                text-decoration: none;
+                                color: white;
+                            }
+
+                            & a:hover {
+                                color: $link;
+                            }
+                        }
+
+                        // Window
+
+                        &_window {
+                            width: 100%;
+                            height: 96%;
+                            background: $screen-window;
+
+                            // nav
+
+                            &_nav {
+                                display: flex;
+                                align-items: center;
+                                width: 100%;
+                                height: 4%;
+                                padding-left: 2px;
+                                box-sizing: border-box;
+                                background: $nav;
+
+                                &_close,
+                                &_mini,
+                                &_resize {
+                                    width: 4px;
+                                    height: 4px;
+                                    background: black;
+                                    border-radius: 90px;
+                                    margin: 0px 2px 0px 2px;
+                                }
+
+                                &_close {
+                                    background: #EF6B64;
+                                }
+
+                                &_mini {
+                                    background: #EAB700;
+                                }
+
+                                &_resize {
+                                    background: #3ADAA2;
+                                }
+                            }
+
+                            // inside the website
+
+                            &_site {
+                                display: flex;
+                                flex-direction: row;
+                                height: 96%;
+                                width: 100%;
+
+                                &_main {
+
+                                    padding: 3px;
+                                    box-sizing: border-box;
+                                    width: 70%;
+                                    height: 100%;
+                                    // background:pink;
+                                    display: flex;
+                                    flex-direction: column;
+                                    align-items: flex-start;
+
+                                    // main video
+
+                                    &_video {
+                                        position: relative;
+                                        width: 100%;
+                                        height: 67.5%;
+                                        // overflow: hidden;
+                                        background: rgb(5, 5, 5);
+                                        cursor: pointer;
+
+                                        & video {
+                                            width: 100%;
+                                            height: 100%;
+                                            object-fit: cover;
+                                            -webkit-object-fit: cover;
+                                        }
+
+                                        // seek bar
+                                        &_seek-bar {
+                                            position: absolute;
+                                            bottom: 8%;
+                                            width: 100%;
+                                            height: 2px;
+                                            background: rgba(255, 255, 255, 0.226);
+                                            cursor: pointer;
+
+                                            // seek bar fill
+
+                                            &_fill {
+                                                position: absolute;
+                                                width: 100%;
+                                                height: 100%;
+                                                left: 0;
+                                                transform: scaleX(0);
+                                                transform-origin: 0 0;
+                                                will-change: transform;
+                                                background: $timebar;
+                                                z-index: 1;
+                                                cursor: pointer;
+                                            }
+                                        }
+
+                                        // video commands
+                                        &_commands {
+                                            display: flex;
+                                            align-items: center;
+                                            bottom: 0;
+                                            position: absolute;
+                                            width: 100%;
+                                            height: 8%;
+                                            background: linear-gradient(rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.507));
+
+                                            &_play,
+                                            &_pause,
+                                            &_next,
+                                            &_fullscreen,
+                                            &_minimize,
+                                            &_high-volume,
+                                            &_muted-volume {
+                                                margin-left: 5;
+                                                width: 5px;
+                                                cursor: pointer;
+                                            }
+
+                                            &_volume {
+                                                margin: 0 4px 0 2px;
+                                                width: 20px;
+                                                height: 2px;
+                                                border-radius: 1px;
+                                                background: rgba(223, 221, 221, 0.301);
+
+                                                &_fill {
+                                                    left: 0;
+                                                    transform: scaleX(1);
+                                                    transform-origin: 0 0;
+                                                    border-radius: 1px;
+                                                    width: 100%;
+                                                    height: 100%;
+                                                    background: white;
+                                                }
+                                            }
+
+                                            & h3 {
+                                                color: white;
+                                                font-family: 'lato';
+                                                font-size: 5px;
+                                                font-weight: 300;
+                                            }
+
+                                            &_fullscreen,
+                                            &_minimize {
+                                                position: absolute;
+                                                right: 5px;
+                                                width: 7px;
+                                            }
+                                        }
+
+
+
+                                    }
+
+                                    // main video description
+                                    &_text {
+                                        margin-top: 3px;
+                                        width: 100%;
+                                        height: 33%;
+
+                                        & h1 {
+                                            margin: 0;
+                                            padding-top: 7px;
+                                            color: $description;
+                                            font-family: lato;
+                                            font-weight: 700;
+                                            font-size: 10px;
+                                            // letter-spacing: 1px;
+
+                                        }
+
+                                        & p {
+                                            margin: 8px 0 8px 0;
+                                            color: $description;
+                                            font-family: 'Lato', sans-serif;
+                                            font-weight: 300;
+                                            font-size: 7px;
+                                            line-height: 10px;
+
+                                        }
+
+                                        & a {
+                                            margin: 20px 0 0 0;
+                                            color: $link;
+                                            font-family: 'Lato', sans-serif;
+                                            font-weight: 400;
+                                            font-size: 5px;
+                                            line-height: 10px;
+                                            text-decoration: none;
+                                        }
+                                    }
+                                }
+
+                                // playlist
+
+                                &_list {
+                                    width: 30%;
+                                    height: 100%;
+                                    padding-right: 3px;
+                                    box-sizing: border-box;
+                                    // background: blue;
+                                    display: flex;
+                                    flex-direction: column;
+                                    overflow: scroll;
+
+                                    & video {
+                                        margin-top: 3px;
+                                        width: 100%;
+                                        height: 32%;
+                                        object-fit: cover;
+                                        -webkit-object-fit: cover;
+                                        cursor: pointer;
+                                    }
+
+                                }
+
+                                ::-webkit-scrollbar {
+                                    display: none;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                &_bot {
+                    width: 100%;
+                    height: 10%;
+                    background: white;
+                    border-radius: 0px 0px 10px 10px;
+                }
+
+                &_foot1 {
+                    width: 20%;
+                    height: 3%;
+                    background: rgb(207, 206, 205);
+                }
+
+                &_foot2 {
+                    width: 20%;
+                    height: 3%;
+                    background: rgb(219, 218, 217);
+                }
+
+                &_foot3 {
+                    width: 25%;
+                    height: 6%;
+                    background: white;
+                    clip-path: polygon(11% 0, 89% 0, 100% 100%, 0 100%);
+                    -webkit-clip-path: polygon(11% 0, 89% 0, 100% 100%, 0 100%);
+                }
+            }
+        }
+    }
+
+    &_part3 {
+        // background: rgb(170, 152, 170);
+        width: 30%;
+        height: 100%;
+
+        //post-it
+
+        &_post {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            height: 70%;
+
+            // background: white;
+            & img {
+                animation-name: flying;
+                animation-duration: 4s;
+                animation-iteration-count: infinite;
+                animation-timing-function: ease-out;
+                user-select: none;
+                width: 100px;
+                height: 100px;
+                z-index: 3;
+                cursor: pointer;
+            }
+
+            & img:hover {
+                transition-duration: 0.5s;
+                transform: scale(1.03);
+            }
+
+            &_tea {
+                margin-top: 110px;
+                z-index: 3;
+            }
+        }
+
+        &_bot {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            width: 95%;
+            height: 30%;
+
+            &_coffee {
+                display: flex;
+                justify-content: center;
+                position: relative;
+                // background: red;
+                height: 70%;
+                width: 30%;
+
+                &_smoke {
+                    width: 30px;
+                    animation: smoke 2s infinite;
+                }
+
+                &_cup {
+                    width: 90px;
+                    position: absolute;
+                    bottom: 0;
+                }
+            }
+
+            &_iphone {
+                // background: pink;
+                display: flex;
+                justify-content: flex-end;
+                flex-direction: column;
+                align-items: center;
+                width: 40%;
+                height: 100%;
+
+                // background: red;
+                &_screen {
+                    position: relative;
+                    width: 72px;
+                    height: 142px;
+                    background: white;
+                    // border: solid white 4px;
+                    border-radius: 9px;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    z-index: 3;
+
+                    &_inside {
+                        width: 66px;
+                        height: 136px;
+                        background: rgb(26, 26, 26);
+                        border-radius: 8px;
+                        will-change: background-image;
+
+                        &_unlocked {
+                            position: relative;
+                            display: flex;
+                            flex-direction: column;
+                            justify-content: center;
+                            align-items: center;
+                            width: 66px;
+                            height: 136px;
+                            background: rgb(26, 26, 26);
+                            border-radius: 7px;
+
+                            & h1 {
+                                text-align: center;
+                                margin: 0;
+                                color: white;
+                                // font-weight: 300;
+                                font-family: 'lato';
+                                letter-spacing: 1px;
+                                font-size: 6px;
+                                width: 80%;
+                                line-height: 8px;
+                                user-select: none;
+                                pointer-events: none;
+                            }
+
+                            & h2 {
+                                text-align: center;
+                                color: white;
+                                font-weight: 300;
+                                font-family: 'lato';
+                                font-size: 3px;
+                                user-select: none;
+                                pointer-events: none;
+                            }
+
+                            &_cover {
+                                margin: 4px 0 8px 0;
+                                width: 50px;
+                                height: 50px;
+                                background: white;
+                                background-size: contain;
+                            }
+
+                            &_time {
+                                display: flex;
+                                align-items: center;
+                                align-content: center;
+                                justify-content: center;
+                                width: 100%;
+                                height: 3%;
+
+                                // background: red;
+                                & h3 {
+                                    color: white;
+                                    font-family: 'lato';
+                                    font-size: 3px;
+                                    font-weight: 300;
+                                    user-select: none;
+                                    pointer-events: none;
+                                }
+
+                                &_bar {
+                                    margin: 0 2px 0 2px;
+                                    width: 65%;
+                                    height: 1px;
+                                    background: black;
+                                    border-radius: 1px;
+                                    cursor: pointer;
+
+                                    &_fill {
+                                        left: 0;
+                                        transform: scaleX(0);
+                                        transform-origin: 0 0;
+                                        will-change: transform;
+                                        height: 100%;
+                                        background: $timebar;
+                                        cursor: pointer;
+                                    }
+                                }
+                            }
+
+                            &_controls {
+                                width: 70%;
+                                height: 15%;
+                                // background: blue;
+                                display: flex;
+                                justify-content: space-between;
+                                align-items: center;
+                                cursor: pointer;
+
+                                & img {
+                                    width: 5px;
+                                }
+                            }
+
+                            &_volume {
+                                display: flex;
+                                align-items: center;
+                                justify-content: center;
+                                width: 100%;
+                                height: 3%;
+
+                                // background: red;
+                                & img {
+                                    width: 3px;
+                                    user-select: none;
+                                    pointer-events: none;
+                                }
+
+                                &_bar {
+                                    margin: 0 1px 0 1px;
+                                    width: 80%;
+                                    height: 1px;
+                                    background: black;
+                                    border-radius: 1px;
+                                    cursor: pointer;
+
+                                    &_fill {
+                                        left: 0;
+                                        transform: scaleX(1);
+                                        transform-origin: 0 0;
+                                        will-change: transform;
+                                        width: 100%;
+                                        height: 100%;
+                                        background: $timebar;
+                                        cursor: pointer;
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    &_inside:hover {
+                        animation-name: wallpaper-transition;
+                        animation-duration: 1s;
+                        will-change: opacity;
+                        background-image: url('../images/iphone-wallpaper.svg');
+                        background-size: cover;
+                        cursor: pointer;
+                    }
+
+                    &_camera {
+                        top: 3px;
+                        position: absolute;
+                        width: 30px;
+                        height: 5px;
+                        background: white;
+                        border-radius: 0px 0px 8px 8px;
+                    }
+                }
+
+                &_support {
+                    width: 90px;
+                    height: 8px;
+                    background: #EFEFEF;
+                    border-radius: 0px 0px 5px 5px;
+                }
+            }
+        }
+    }
+}
+
+/*
+DESK
+*/
+.desk {
+    --width_table: 100%;
+    --height_table: 18%;
+    --height_table-bot: 64%;
+    width: 90%;
+    height: 20%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    // table, support
+    &_table {
+        background: $desk;
+        width: var(--width_table);
+        height: var(--height_table);
+    }
+
+    &_under-table {
+        position: relative;
+        background: $desk;
+        width: calc(var(--width_table) - 10%);
+        height: var(--height_table);
+
+        &_shadow {
+            position: absolute;
+            background: $desk-shadow;
+            width: 100%;
+            height: 4px;
+        }
+    }
+
+    &_bot {
+        width: calc(var(--width_table) - 13%);
+        height: var(--height_table-bot);
+        display: flex;
+        justify-content: space-between;
+
+        &_drawer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            background: $desk;
+            width: 250px;
+            height: 100%;
+            cursor: pointer;
+            z-index: 3;
+
+            &_shadow {
+                position: absolute;
+                top: 0;
+                background: $desk-shadow;
+                width: 100%;
+                height: 4px;
+            }
+
+            &_handle {
+                background: $handle;
+                width: 12px;
+                height: 12px;
+                border-radius: 90px;
+            }
+        }
+
+        &_foot {
+            position: relative;
+            background: $desk;
+            width: 40px;
+            height: 100%;
+
+            &_shadow {
+                position: absolute;
+                background: $desk-shadow;
+                width: 100%;
+                height: 4px;
+            }
+        }
+    }
+}
+
+//ANIMATIONS
+
+@keyframes wallpaper-transition {
+    0% {
+        opacity: 0.5;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes opacity-fade {
+    0% {
+        opacity: 0;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}
+
+@keyframes smoke {
+    0% {
+        transform: translateY(0px);
+        opacity: 1;
+    }
+
+    50% {
+        opacity: .5;
+    }
+
+    100% {
+        transform: translateY(-10px);
+        opacity: 0;
+    }
+}
+
+@keyframes scale {
+    0% {
+        transform: scale(1) translateX(0%) translateY(0%);
+    }
+
+    100% {
+        transform: scale(2.3) translateX(-4.5%) translateY(-8%);
+    }
+}
+
+@keyframes flying {
+    0% {
+        transform-origin: 0px 0px;
+        transform: skew(0deg, 0deg);
+    }
+
+    50% {
+        transform-origin: 0px 0px;
+        transform: skew(2deg, -1deg);
+    }
+
+    100% {
+        transform-origin: 0px 0px;
+        transform: skew(0deg, 0deg);
+    }
+}
+
+@keyframes flyingCurtain {
+    0% {
+        transform-origin: 0px 0px;
+        transform: skew(0deg, 0deg);
+    }
+
+    50% {
+        transform-origin: 0px 0px;
+        transform: skew(0.8deg, 0deg);
+    }
+
+    100% {
+        transform-origin: 0px 0px;
+        transform: skew(0deg, 0deg);
+    }
+}
+
+// RESPONSIVE
+
+@media (max-width:1300px) and (min-width:950px) {
+    .deco_part3 {
+        display: none;
+    }
+
+    .deco_part2 {
+        width: 50vw;
+    }
+
+    .deco_part1 {
+        width: 40vw;
+    }
+}
+
+@media (max-width:950px) and (min-width:600px) {
+    .deco_part3 {
+        display: none;
+    }
+
+    .deco_part2 {
+        width: 100vw;
+    }
+
+    .deco_part1 {
+        display: none;
+    }
+}
+
+@media (max-width:600px) {
+    .deco_part1 {
+        display: none;
+    }
+
+    .desk_bot_drawer,
+    .desk_bot_foot {
+        width: 30px;
+    }
+
+    .deco_part2 {
+        width: 100vw;
+    }
+
+    .desk_bot_drawer_handle {
+        display: none;
+    }
+
+    .deco_part3 {
+        display: none;
+    }
+
+    .deco_part2_bot {
+        --width_computer: 310px;
+        --height_computer: 240px;
+    }
+
+    .deco_part2_bot_computer_bot {
+        border-radius: 0px 0px 5px 5px;
+    }
+
+    .deco_part2_bot_computer_screen {
+        border-radius: 5px 5px 0px 0px;
+    }
+
+    .deco_part2_bot_computer_screen_unlocked_window_site_main_text {
+        h1 {
+            padding-top: 1;
+        }
+
+        p {
+            margin: 2px 0px 2px 0px;
+            font-size: 6px;
+            line-height: 8px;
+        }
+    }
+
+    .deco_part2_top_clock {
+        width: 130px;
+        height: 130px;
+        border: solid 3px black;
+    }
+}
